@@ -15,7 +15,13 @@ buildscript {
     }
 }
 
+apply plugin: 'java'
 apply plugin: 'forge'
+
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
 
 version = "1.7.10R3.0.4"
 group = "cofh"
@@ -44,4 +50,9 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
+
+dependencies {
+    compile files("lib/CoFHLib-[1.7.10]1.2.1-185.jar")
+    compile files("lib/NotEnoughItems-1.7.10-1.0.5.120-universal.jar")
 }

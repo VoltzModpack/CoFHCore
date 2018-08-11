@@ -77,8 +77,10 @@ public abstract class GuiBaseAdv extends GuiBase {
 
 	@Override
 	public IIcon getIcon(String name) {
-
 		return IconRegistry.getIcon(name);
 	}
 
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
+	}
 }

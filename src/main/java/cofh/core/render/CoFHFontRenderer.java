@@ -7,18 +7,16 @@ import cofh.core.render.customcharrendering.RenderSprite;
 import cofh.lib.util.helpers.SecurityHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import gnu.trove.map.hash.TCharObjectHashMap;
-
-import java.util.Arrays;
-import java.util.List;
-
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.Arrays;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class CoFHFontRenderer extends FontRenderer {
@@ -87,7 +85,6 @@ public class CoFHFontRenderer extends FontRenderer {
 		return Arrays.asList(this.wrapFormattedStringToWidth(par1Str, par2).split("\n"));
 	}
 
-	@Override
 	public String wrapFormattedStringToWidth(String par1Str, int par2) {
 
 		int j = this.sizeStringToWidth(par1Str, par2);
