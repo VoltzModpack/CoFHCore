@@ -23,7 +23,7 @@ compileJava {
     targetCompatibility = '1.8'
 }
 
-version = "1.7.10R3.0.4"
+version = "3.1.5-kmecpp"
 group = "cofh"
 archivesBaseName = "CoFHCore"
 

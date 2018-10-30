@@ -13,6 +13,7 @@ tmp/
 *.bak
 *.swp
 *~.nib
+*.ipr
 local.properties
 .classpath
 .settings/
@@ -20,6 +21,8 @@ local.properties
 crash-reports/
 logs/
 mods/
+out/
+.idea
 resourcepacks/
 saves/
 /options.txt

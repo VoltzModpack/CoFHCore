@@ -3,21 +3,14 @@ package cofh.asmhooks;
 import cofh.asmhooks.event.ModPopulateChunkEvent;
 import cofh.core.CoFHProps;
 import cofh.core.item.IEqualityOverrideItem;
-import cofh.lib.util.helpers.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -25,6 +18,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class HooksCore {
 
@@ -80,40 +76,42 @@ public class HooksCore {
 
 	@SuppressWarnings("rawtypes")
 	public static List getEntityCollisionBoxes(World world, Entity entity, AxisAlignedBB bb) {
-
 		if (!entity.canBePushed()) {
-			List collidingBoundingBoxes = world.collidingBoundingBoxes;
-			if (collidingBoundingBoxes == null) {
-				collidingBoundingBoxes = world.collidingBoundingBoxes = new ArrayList();
-			}
-			collidingBoundingBoxes.clear();
-			int i = MathHelper.floor(bb.minX);
-			int j = MathHelper.floor(bb.maxX + 1.0D);
-			int k = MathHelper.floor(bb.minY);
-			int l = MathHelper.floor(bb.maxY + 1.0D);
-			int i1 = MathHelper.floor(bb.minZ);
-			int j1 = MathHelper.floor(bb.maxZ + 1.0D);
-
-			for (int x = i; x < j; ++x) {
-				boolean xBound = x >= -30000000 & x < 30000000;
-				for (int z = i1; z < j1; ++z) {
-					boolean def = xBound & z >= -30000000 & z < 30000000;
-					if (!world.blockExists(x, 64, z)) {
-						continue;
-					}
-					if (def) {
-						for (int y = k - 1; y < l; ++y) {
-							world.getBlock(x, y, z).addCollisionBoxesToList(world, x, y, z, bb, collidingBoundingBoxes, entity);
-						}
-					} else {
-						for (int y = k - 1; y < l; ++y) {
-							Blocks.bedrock.addCollisionBoxesToList(world, x, y, z, bb, collidingBoundingBoxes, entity);
-						}
-					}
-				}
-			}
-
-			return collidingBoundingBoxes;
+			System.out.println("CoFH Core attempted to getEntityCollisionBoxes() in HooksCore class for entity: " + entity.getCommandSenderName()
+				                   + " at : " + world.getProviderName()
+				                   + "(" + (int) entity.posX + ", " + (int) entity.posY + ", " + (int) entity.posZ + ")");
+//			List collidingBoundingBoxes = world.collidingBoundingBoxes;
+//			if (collidingBoundingBoxes == null) {
+//				collidingBoundingBoxes = world.collidingBoundingBoxes = new ArrayList();
+//			}
+//			collidingBoundingBoxes.clear();
+//			final int i = MathHelper.floor(bb.minX);
+//			final int j = MathHelper.floor(bb.maxX + 1.0D);
+//			final int k = MathHelper.floor(bb.minY);
+//			final int l = MathHelper.floor(bb.maxY + 1.0D);
+//			final int i1 = MathHelper.floor(bb.minZ);
+//			final int j1 = MathHelper.floor(bb.maxZ + 1.0D);
+//
+//			for (int x = i; x < j; ++x) {
+//				boolean xBound = x >= -30000000 & x < 30000000;
+//				for (int z = i1; z < j1; ++z) {
+//					boolean def = xBound & z >= -30000000 & z < 30000000;
+//					if (!world.blockExists(x, 64, z)) {
+//						continue;
+//					}
+//					if (def) {
+//						for (int y = k - 1; y < l; ++y) {
+//							world.getBlock(x, y, z).addCollisionBoxesToList(world, x, y, z, bb, collidingBoundingBoxes, entity);
+//						}
+//					} else {
+//						for (int y = k - 1; y < l; ++y) {
+//							Blocks.bedrock.addCollisionBoxesToList(world, x, y, z, bb, collidingBoundingBoxes, entity);
+//						}
+//					}
+//				}
+//			}
+//
+//			return collidingBoundingBoxes;
 		}
 		return world.getCollidingBoundingBoxes(entity, bb);
 	}
